@@ -12,10 +12,6 @@
 
 - You could ask to test functionalities of your menu, such as calculation for volatility, back testing, and manual testing.
 
-#### Make sure your team project program meet all the requirements list as the following:
-
-- Pair Trading:
-
 #### Condition and Assumption:
 - (1) “Going short”– the first stock of the pair is short and the other is long. 
 - (2) “Going long” - the first stock of the pair is long and the other is short.
