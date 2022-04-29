@@ -76,39 +76,3 @@ int PullMarketData(const std::string& url_request, std::string& read_buffer)
     return 0;
 }
 
-int PopulateDailyTrades(const std::string& read_buffer,Stock& stock)
-{
-    //json parsing
-    Json::CharReaderBuilder builder;
-    Json::CharReader* reader = builder.newCharReader();
-    Json::Value root;   // will contains the root value after parsing.
-    string errors;
-    
-    bool parsingSuccessful = reader->parse(read_buffer.c_str(), read_buffer.c_str() + read_buffer.size(), &root, &errors);
-    if (not parsingSuccessful)
-    {
-        // Report failures and their locations in the document.
-        cout << "Failed to parse JSON" << endl << read_buffer << errors << endl;
-        return -1;
-    }
-    
-    cout << "\nSucess parsing json\n" << root << endl;
-    string datetime;
-    float open, high, low, close,adjusted_close;
-    int volume;
-    
-    for (Json::Value::const_iterator itr = root.begin(); itr != root.end(); itr++)
-    {
-        datetime = (*itr)["date"].asString();
-        open = (*itr)["open"].asFloat();
-        high = (*itr)["high"].asFloat();
-        low = (*itr)["low"].asFloat();
-        close = (*itr)["close"].asFloat();
-        adjusted_close = (*itr)["adjusted_close"].asFloat();
-        volume = (*itr)["volume"].asInt64();
-        DailyTrade aTrade(datetime, open, high, low, close, adjusted_close, volume);
-        stock.addDailyTrade(aTrade);
-    }
-    return 0;
-}
-
