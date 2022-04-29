@@ -16,13 +16,13 @@
 
 - Pair Trading:
 
-##### Condition and Assumption:
+#### Condition and Assumption:
 (1) “Going short”– the first stock of the pair is short and the other is long. 
 (2) “Going long” - the first stock of the pair is long and the other is short.
 (3) Always trade 10,000 shares for the first stock (S1) and determine the shares for the other (S2) accordingly: N1P1 + N2P2 = 0
 (4) N1 and N2 are the numbers of shares of S1 and S2, and P1 and P2 are the prices of S1 and S2
 
-##### Trading Algorithm:
+#### Trading Algorithm:
 (1) Compute the standard deviation, σp, of the ratio of the two adjusted closing stock prices in each pair from 1/2/2012 to 12/31/2021. 
 Store this standard deviation in the database.
 
@@ -46,7 +46,7 @@ Store this standard deviation in the database.
 
 (7) Your program should support manually entered open and close price for a pair to simulate real-time trading
 
-##### Database Implementation:
+#### Database Implementation:
     (a) Create 5 tables, Pairs, Pair1Stocks, Pair2Stocks, PairPrices, Trades (Trade table could also be part of PairPrices table):
         Pairs: Pair symbols, volatility, profit_loss (from back_testing),  primary keys: pair symbols
         Pair1Stocks and Pair2Stocks: the daily market data retrieved for each stock in the pair from 1/2/2012 to 12/31/2021, primary keys: symbol and date
