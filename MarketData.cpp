@@ -7,8 +7,8 @@
 //
 
 #include <stdio.h>
-#include "Stock.h"
-#include "Util.h"
+#include "Stock.hpp"
+#include "Util.hpp"
 #include <string>
 #include "json/json.h"
 #include "curl/curl.h"
@@ -112,55 +112,3 @@ int PopulateDailyTrades(const std::string& read_buffer,Stock& stock)
     return 0;
 }
 
-int PopulateIntradayTrades(const std::string& read_buffer, Stock& stock, long start_date)
-{
-    //json parsing
-    Json::CharReaderBuilder builder;
-    Json::CharReader* reader = builder.newCharReader();
-    Json::Value root;   // will contains the root value after parsing.
-    string errors;
-    
-    bool parsingSuccessful = reader->parse(read_buffer.c_str(), read_buffer.c_str() + read_buffer.size(), &root, &errors);
-    if (not parsingSuccessful)
-    {
-        // Report failures and their locations in the document.
-        cout << "Failed to parse JSON" << endl << read_buffer << errors << endl;
-        return -1;
-    }
-    
-    cout << "\nSucess parsing json\n" << root << endl;
-    string date;
-    string timestamp;
-    float open, high, low, close;
-    long volume;
-    
-    for (Json::Value::const_iterator itr = root.begin(); itr != root.end(); itr++)
-    {
-        long trade_timestamp = (*itr)["timestamp"].asInt64();
-        if (trade_timestamp <= start_date)
-            continue;
-        string datetime = (*itr)["datetime"].asString();
-        size_t current, previous = 0;
-        current = datetime.find(' ');
-        date = datetime.substr(previous, current - previous);
-        previous = current + 1;
-        string temp = datetime.substr(previous, datetime.length() - current);
-        previous = 0;
-        current = temp.find(':');
-        int hour = stoi(temp.substr(previous, current - previous));
-        hour -= 5;// convert to local time
-        previous = current + 1;
-        string mins_second = temp.substr(previous, datetime.length() - current);
-        timestamp = to_string(hour) + ":" + mins_second;
-        open = (*itr)["open"].asFloat();
-        high = (*itr)["high"].asFloat();
-        low = (*itr)["low"].asFloat();
-        close = (*itr)["close"].asFloat();
-        volume = (*itr)["volume"].asInt64();
-        IntradayTrade aTrade(date.c_str(), timestamp.c_str(), open, high, low, close, volume);
-        stock.addIntradayTrade(aTrade);
-    }
-
-    return 0;
-    
-}
