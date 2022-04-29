@@ -1,10 +1,10 @@
 //
 //  Stock.hpp
-//  FRE7831_MarketData_Lab
+//  Final_Project
 //
-//  Created by 马卓然 on 2022/4/13.
+//  Created by Evy Zheng on 4/29/22.
 //
-#pragma once
+
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -90,9 +90,11 @@ struct PairPrice
     double dClose1;
     double dOpen2;
     double dClose2;
+    double dAdjusted_close1;
+    double dAdjusted_close2;
     double dProfit_Loss;
-    PairPrice() : dOpen1(0), dClose1(0), dOpen2(0), dClose2(0), dProfit_Loss(0) {}
-    PairPrice(double dOpen1_, double dClose1_, double dOpen2_, double dClose2_) : dOpen1(dOpen1_), dClose1(dClose1_), dOpen2(dOpen2_), dClose2(dClose2_), dProfit_Loss(0) {}
+    PairPrice() : dOpen1(0), dClose1(0), dOpen2(0), dClose2(0), dProfit_Loss(0),dAdjusted_close1(0),dAdjusted_close2(0) {}
+    PairPrice(double dOpen1_, double dClose1_, double dOpen2_, double dClose2_, double dAdjusted_close1_, double dAdjusted_close2_) : dOpen1(dOpen1_), dClose1(dClose1_), dOpen2(dOpen2_), dClose2(dClose2_), dAdjusted_close1(dAdjusted_close1_), dAdjusted_close2(dAdjusted_close2_), dProfit_Loss(0) {}
 };
 
 
@@ -104,8 +106,8 @@ private:
     double k;
     map<string, PairPrice> dailyPairPrices; // <date, pair price>
 public:
-    StockPairPrices() { volatility = 0; k = 0;}
-    StockPairPrices(pair<string, string> stockPair_) { stockPair = stockPair_; volatility = 0; k = 0; }
+    StockPairPrices() { volatility = 0; k = 1;}
+    StockPairPrices(pair<string, string> stockPair_) { stockPair = stockPair_; volatility = 0; k = 1; }
     void SetDailyPairPrice(string sDate_, PairPrice pairPrice_)
     {
         dailyPairPrices.insert(pair<string, PairPrice>(sDate_, pairPrice_));
@@ -121,4 +123,3 @@ public:
     double GetVolatility() const { return volatility; }
     double GetK() const { return k; }
 };
-
