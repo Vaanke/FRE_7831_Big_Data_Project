@@ -51,7 +51,7 @@ Store this standard deviation in the database.
     (b) Establish E-R model to enforce the relationship of primary keys and foreign keys for each table.
 
 ### Apr 29 Updates
-- PopulatePairs, Create Pairs Table : Zhuoran Ma
+- PopulatePairs, Create PairTable :  : Zhuoran Ma
 - PopulateStocks, create Pair1Stocks & Pair2Stocks Table: Elaine
 - Create & populate PairPrices Table, Calc_Vol: Zirui
 - Calc_PnL: Deyang
