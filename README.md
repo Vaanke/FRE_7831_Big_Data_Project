@@ -10,9 +10,9 @@
 - "Going short" - the first stock of the pair is short and the other is long.
 - "Going long" - the first stock of the pair is long and the other is short.
 
-
-#### 04/29
+# Apr 29 Update
+## Prj distribution
 - PopulatePairs, Create_PairTable : Zhuoran Ma
 - PopulateStocks, Create_PairPricesTable: Elaine
 - PopulatePairPrices, Calc_Vol: Zirui
-- Backtest/Calc_PnL: Deyang
+- Calc_PnL: Deyang
