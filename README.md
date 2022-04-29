@@ -12,7 +12,7 @@
 
 
 #### 04/29
-PopulatePairs, Create_PairTable : Zhuoran Ma
-PopulateStocks, Create_PairPricesTable: Elaine
-PopulatePairPrices, Calc_Vol: Zirui
-Backtest/Calc_PnL: Deyang
+- PopulatePairs, Create_PairTable : Zhuoran Ma
+- PopulateStocks, Create_PairPricesTable: Elaine
+- PopulatePairPrices, Calc_Vol: Zirui
+- Backtest/Calc_PnL: Deyang
