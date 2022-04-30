@@ -17,5 +17,3 @@
  // forward declaration
 
 int PullMarketData(const std::string& url_request, std::string& read_buffer);
-
-int GetPairsVec(const char *infile, std::vector<std::pair<std::string,std::string>> &PairVec);

@@ -17,7 +17,6 @@
 
 int PullMarketData(const std::string& url_request, std::string& read_buffer)
 {
-    //string readBuffer;
     //global initiliation of curl before calling a function
     curl_global_init(CURL_GLOBAL_ALL);
 
@@ -64,34 +63,6 @@ int PullMarketData(const std::string& url_request, std::string& read_buffer)
     //cout << read_buffer << endl;
     curl_easy_cleanup(handle);
     curl_global_cleanup();
-    
-    return 0;
-}
-
-int GetPairsVec(const char *infile, std::vector<std::pair<std::string,std::string>> &PairVec)
-{
-    std::ifstream fin(infile);
-    
-    if (!fin.is_open())
-    {
-        std::cerr << "ERROR: Unable to open file." << infile << std::endl;
-        return -1;
-    }
-    
-    std::string line;
-    while (getline(fin, line))
-    {
-        std::istringstream iss(line);
-        std::string symbol1;
-        std::string symbol2;
-        
-        getline(iss, symbol1, ',');
-        getline(iss, symbol2, ',');
-        
-        if (!symbol2.empty() && symbol2[symbol2.length() - 1] == '\r') symbol2.erase(symbol2.size() - 1);
-        
-        PairVec.push_back(std::pair<std::string,std::string> { symbol1, symbol2 });
-    }
     
     return 0;
 }
