@@ -1,0 +1,60 @@
+{
+  "_buildCommand2" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "5163ea3312de712a416be1c8ef2fb63fb56bf47957aac951dd251ea807da835c"
+    }
+  ],
+  "containerPath" : "/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx12.1",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Products",
+      "derivedDataPath" : "/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "INDEX_ARENA_INFO_REGULAR_BUILD_PRODUCTS_DIR" : "/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Build/Products",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

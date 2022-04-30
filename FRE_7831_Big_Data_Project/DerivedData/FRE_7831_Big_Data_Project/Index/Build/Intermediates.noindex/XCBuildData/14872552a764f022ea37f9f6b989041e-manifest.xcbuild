@@ -1,0 +1,14 @@
+client:
+  name: basic
+  version: 0
+  file-system: default
+
+targets:
+  "": ["<all>"]
+
+commands:
+  "::WriteAuxiliaryFile /Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/index-to-index-overlay.yaml": {"tool":"auxiliary-file","description":"WriteAuxiliaryFile /Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/index-to-index-overlay.yaml","inputs":[],"outputs":["/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/index-to-index-overlay.yaml"]}
+  "::WriteAuxiliaryFile /Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/index-to-regular-overlay.yaml": {"tool":"auxiliary-file","description":"WriteAuxiliaryFile /Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/index-to-regular-overlay.yaml","inputs":[],"outputs":["/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/index-to-regular-overlay.yaml"]}
+  "::WriteAuxiliaryFile /Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/regular-to-index-overlay.yaml": {"tool":"auxiliary-file","description":"WriteAuxiliaryFile /Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/regular-to-index-overlay.yaml","inputs":[],"outputs":["/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/regular-to-index-overlay.yaml"]}
+  "<all>": {"tool":"phony","inputs":["/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/index-to-index-overlay.yaml","/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/index-to-regular-overlay.yaml","/Users/mazhuoran/Downloads/7831/pairtrading/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Index/Build/Intermediates.noindex/regular-to-index-overlay.yaml"],"outputs":["<all>"]}
+
