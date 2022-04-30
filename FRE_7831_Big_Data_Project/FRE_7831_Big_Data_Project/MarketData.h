@@ -18,6 +18,4 @@
 
 int PullMarketData(const std::string& url_request, std::string& read_buffer);
 
-int PopulateDailyTrades(const std::string& read_buffer,Stock& stock);
-
-int PopulateIntradayTrades(const std::string& read_buffer, Stock& stock, long start_date);
+int GetPairsVec(const char *infile, std::vector<std::pair<std::string,std::string>> &PairVec);
