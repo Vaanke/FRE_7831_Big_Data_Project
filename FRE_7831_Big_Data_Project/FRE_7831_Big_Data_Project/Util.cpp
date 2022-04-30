@@ -65,7 +65,46 @@ int Create_PairTable(const vector<StockPairPrices>& all_Pairs,sqlite3* db){
     }
     return 0;
 }
-void Create_PairPricesTable(const vector<StockPairPrices>& all_Pairs){}
+
+
+int Create_PairPricesTable(const vector<StockPairPrices>& all_Pairs,sqlite3 * &db)
+{
+    string PairOnePrices_sql_create_table = string("CREATE TABLE IF NOT EXISTS PairOnePrices ")
+        + "(symbol CHAR(20) NOT NULL,"
+        + "date CHAR(20) NOT NULL,"
+        + "open REAL NOT NULL,"
+        + "high REAL NOT NULL,"
+        + "low REAL NOT NULL,"
+        + "close REAL NOT NULL,"
+        + "adjusted_close REAL NOT NULL,"
+        + "volume INT NOT NULL,"
+        + "PRIMARY KEY(symbol, date));";
+    
+    string PairTwoPrices_sql_create_table = string("CREATE TABLE IF NOT EXISTS PairTwoPrices ")
+        + "(symbol CHAR(20) NOT NULL,"
+        + "date CHAR(20) NOT NULL,"
+        + "open REAL NOT NULL,"
+        + "high REAL NOT NULL,"
+        + "low REAL NOT NULL,"
+        + "close REAL NOT NULL,"
+        + "adjusted_close REAL NOT NULL,"
+        + "volume INT NOT NULL,"
+        + "PRIMARY KEY(symbol, date));";
+    
+    // Drop the tables if they already exist in the database
+    string sql_droptable1 = "DROP TABLE IF EXISTS PairOnePrices";
+    DropTable(db,sql_droptable1.c_str());
+    string sql_droptable2 = "DROP TABLE IF EXISTS PairTwoPrices";
+    DropTable(db,sql_droptable2.c_str());
+    
+    // Create tables
+    if(ExecuteSQL(db, PairOnePrices_sql_create_table.c_str()) !=0) return -1;
+    if(ExecuteSQL(db, PairTwoPrices_sql_create_table.c_str()) !=0) return -1;
+    
+    cout << "Finished Creating PairOnePrices & PairTwoPrices " << endl;
+
+    return 0;
+}
 
 map<string, string> ProcessConfigData(string config_file)
 {

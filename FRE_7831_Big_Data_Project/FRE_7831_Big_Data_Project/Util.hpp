@@ -16,7 +16,7 @@ void Calc_PnL(const map<string, Stock>& all_Stocks, vector<StockPairPrices>& all
 
 
 int Create_PairTable(const vector<StockPairPrices>& all_Pairs,sqlite3* db);
-void Create_PairPricesTable(const vector<StockPairPrices>& all_Pairs);
+int Create_PairPricesTable(const vector<StockPairPrices>& all_Pairs,sqlite3 * &db);
 // Process config file for Market Data Retrieval
 map<string, string> ProcessConfigData(string config_file);
 
