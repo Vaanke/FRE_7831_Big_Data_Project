@@ -76,38 +76,52 @@ int main(int argc, const char * argv[]) {
                 break;
             }
                 
-            case 'C': {
+            case 'C':
+            case 'c':
+            {
                 // Create PairPrices Table
                 // Create all three pair prices table.
                 cout << "Completed!" << endl;
                 break;
             }
-            case 'D': {
+            case 'D':
+            case 'd':
+            {
                 // Calculate Violatility
                 // populate stockpairs table with vol
                 cout << "Completed!" << endl;
                 break;
             }
-            case 'E': {
+            case 'E':
+            case 'e':
+            {
                 // Back Test, 1/1/2022 - now
                 
                 cout << "Completed!" << endl;
                 break;
             }
-            case 'F': {
+            case 'F':
+            case 'f':
+            {
                 // Calculate Profit and Loss for Each Pair
                 cout << "Completed!" << endl;
                 break;
             }
-            case 'G': {
+            case 'G':
+            case 'g':
+            {
                 cout << "Completed!" << endl;
                 break;
             }
-            case 'H': {
+            case 'H':
+            case 'h':
+            {
                 cout << "Completed!" << endl;
                 break;
             }
-            case 'X': {
+            case 'X':
+            case 'x':
+            {
                 break;
             }
             default:

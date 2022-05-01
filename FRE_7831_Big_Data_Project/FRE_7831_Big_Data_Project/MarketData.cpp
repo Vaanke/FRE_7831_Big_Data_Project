@@ -61,9 +61,9 @@ int PullMarketData(const std::string& url_request, std::string& read_buffer)
         return -1;
     }
     
-    cout << read_buffer << endl;
+//    cout << read_buffer << endl;
     curl_easy_cleanup(handle);
-    //curl_global_cleanup();
+    curl_global_cleanup();
     
     return 0;
 }
@@ -83,7 +83,7 @@ int PopulateDailyTrades(const std::string &read_buffer, Stock& stock)
         return -1;
     }
     
-    std::cout << "\nSuccessfully parsing JSON\n" << std::endl;
+    std::cout << stock.getSymbol()<<": Successfully parsing JSON" << std::endl;
     
     std::string date;
     double open;

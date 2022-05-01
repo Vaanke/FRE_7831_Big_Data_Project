@@ -133,11 +133,11 @@ int InsertTable(sqlite3* db, bool IsStockOne, const Stock &stock)
 
         if (IsStockOne)
         {
-        cout << "Inserting a value into table PairOnePrices" << endl;
+        //cout << "Inserting a value into table PairOnePrices" << endl;
         sprintf(sqlInsert, "INSERT INTO PairOnePrices(symbol, date, open, high, low, close, adjusted_close, volume) VALUES(\"%s\", \"%s\", %f, %f, %f, %f, %f, %ld)", stock.getSymbol().c_str(), date.c_str(), open, high, low, close, adjusted_close, volume);
         } else
         {
-        cout << "Inserting a value into table PairTwoPrices" << endl;
+        //cout << "Inserting a value into table PairTwoPrices" << endl;
         sprintf(sqlInsert, "INSERT INTO PairTwoPrices(symbol, date, open, high, low, close, adjusted_close, volume) VALUES(\"%s\", \"%s\", %f, %f, %f, %f, %f, %ld)", stock.getSymbol().c_str(), date.c_str(), open, high, low, close, adjusted_close, volume);
         }
         if(ExecuteSQL(db, sqlInsert) !=0) return -1;

@@ -6,4 +6,3 @@
 //
 
 //#include "Stock.hpp"
-
