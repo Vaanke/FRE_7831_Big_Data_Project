@@ -8,8 +8,8 @@
 #include "Database.hpp"
 #include <iostream>
 #include <string>
+#include "json/json.h"
 
-using namespace std;
 
 int OpenDatabase(const char* database_name, sqlite3* & db)
 {
@@ -109,6 +109,43 @@ int ShowTable(sqlite3* db, const char* sql_stmt)
     return 0;
 }
 
+int InsertTable(sqlite3* db, bool IsStockOne, const Stock &stock)
+{
+    string date;
+    double open,high,low,close,adjusted_close;
+    long volume;
+    
+    vector<TradeData> atrade = stock.getTrades();
+
+    // insert data into PairOnePrice
+    for(vector<TradeData>::iterator itr = atrade.begin(); itr != atrade.end(); itr ++)
+    {
+
+        date = itr->GetsDate();
+        open = itr->GetdOpen();
+        high = itr->GetdHigh();
+        low = itr->GetdLow();
+        close = itr->GetdClose();
+        adjusted_close = itr->GetdAdjClose();
+        volume = itr->GetlVolumn();
+        
+        char sqlInsert[512];
+
+        if (IsStockOne)
+        {
+        cout << "Inserting a value into table PairOnePrices" << endl;
+        sprintf(sqlInsert, "INSERT INTO PairOnePrices(symbol, date, open, high, low, close, adjusted_close, volume) VALUES(\"%s\", \"%s\", %f, %f, %f, %f, %f, %ld)", stock.getSymbol().c_str(), date.c_str(), open, high, low, close, adjusted_close, volume);
+        } else
+        {
+        cout << "Inserting a value into table PairTwoPrices" << endl;
+        sprintf(sqlInsert, "INSERT INTO PairTwoPrices(symbol, date, open, high, low, close, adjusted_close, volume) VALUES(\"%s\", \"%s\", %f, %f, %f, %f, %f, %ld)", stock.getSymbol().c_str(), date.c_str(), open, high, low, close, adjusted_close, volume);
+        }
+        if(ExecuteSQL(db, sqlInsert) !=0) return -1;
+    }
+    return 0;
+}
+
+
 void CloseDatabase(sqlite3* db)
 {
     sqlite3_close(db);
@@ -132,21 +169,3 @@ string sql_stmt_insert_Daily(string symbol, string date, float open, float high,
     return sql_stmt;
 }
 
-
-
-string sql_stmt_insert_Intraday(string symbol, string date, string timestamp, float open, float high, float low, float close, int volume){
-    string sql_stmt = string("INSERT INTO ")
-        + "IntradayTrades "
-        + "VALUES("
-        + "'"+ symbol + "'"+ ","
-        + "'"+ date + "'"+ ","
-        + "'"+ timestamp + "'"+ ","
-        + to_string(open) + ","
-        + to_string(high) + ","
-        + to_string(low) + ","
-        + to_string(close) + ","
-        + to_string(volume)
-        + ");";
-    
-    return sql_stmt;
-}

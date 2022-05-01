@@ -6,6 +6,10 @@
 //
 #pragma once
 #include "Util.hpp"
+#include <unordered_set>
+#include <ctime>
+#include <cstdio>
+
 
 // read the PairTrading.txt and populate stockPair Prices
 void PopulatePairs(vector<StockPairPrices>& all_Pairs, const string& file_name) {
@@ -27,7 +31,6 @@ void PopulatePairs(vector<StockPairPrices>& all_Pairs, const string& file_name) 
         
     }
 }
-void PopulateStocks(map<string, Stock>& all_Stocks, const vector<StockPairPrices>& all_Pairs){}
 void PopulatePairPrices(const map<string, Stock>& all_Stocks, vector<StockPairPrices>& all_Pairs){}
 void Calc_Vol(const map<string, Stock>& all_Stocks, vector<StockPairPrices>& all_Pairs){}
 void Calc_PnL(const map<string, Stock>& all_Stocks, vector<StockPairPrices>& all_Pairs){}
@@ -67,7 +70,7 @@ int Create_PairTable(const vector<StockPairPrices>& all_Pairs,sqlite3* db){
 }
 
 
-int Create_PairPricesTable(const vector<StockPairPrices>& all_Pairs,sqlite3 * &db)
+int Create_PairOneTwoPricesTable(sqlite3 * &db)
 {
     string PairOnePrices_sql_create_table = string("CREATE TABLE IF NOT EXISTS PairOnePrices ")
         + "(symbol CHAR(20) NOT NULL,"
@@ -93,10 +96,11 @@ int Create_PairPricesTable(const vector<StockPairPrices>& all_Pairs,sqlite3 * &d
     
     // Drop the tables if they already exist in the database
     string sql_droptable1 = "DROP TABLE IF EXISTS PairOnePrices";
-    DropTable(db,sql_droptable1.c_str());
+    if(DropTable(db,sql_droptable1.c_str()) !=0) return -1;
+
     string sql_droptable2 = "DROP TABLE IF EXISTS PairTwoPrices";
-    DropTable(db,sql_droptable2.c_str());
-    
+    if(DropTable(db,sql_droptable2.c_str()) !=0) return -1;
+
     // Create tables
     if(ExecuteSQL(db, PairOnePrices_sql_create_table.c_str()) !=0) return -1;
     if(ExecuteSQL(db, PairTwoPrices_sql_create_table.c_str()) !=0) return -1;
@@ -105,6 +109,93 @@ int Create_PairPricesTable(const vector<StockPairPrices>& all_Pairs,sqlite3 * &d
 
     return 0;
 }
+
+int PopulateStocks(map<string, Stock>& all_Stocks, const vector<StockPairPrices>& all_Pairs,sqlite3 * &db)
+{
+    
+    string start_date = "2012-01-01";
+    string end_date = "2022-04-30";
+    string daily_url_common = "https://eodhistoricaldata.com/api/eod/";
+    string api_token = "623fdfffcf36b8.23759772";
+    
+    
+    unordered_set<string> PairOneStocks;
+    unordered_set<string> PairTwoStocks;
+
+    
+    for (int i =0; i<(int)all_Pairs.size(); i++) {
+        pair<string, string> stockpair;
+        
+        stockpair=all_Pairs[i].GetStockPair();
+        string StockOne = stockpair.first.c_str();
+        string StockTwo = stockpair.second.c_str();
+        cout<<StockOne;
+
+        string daily_url_request_StockOne = daily_url_common + StockOne + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
+        string daily_url_request_StockTwo = daily_url_common + StockTwo + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
+        
+        string read_buffer_StockOne;
+        string read_buffer_StockTwo;
+        
+        // Stock One
+        if (PairOneStocks.find(StockOne) == PairOneStocks.end())
+        {
+            string url_request = daily_url_common + StockOne + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
+            string read_buffer;
+            vector<TradeData> atrade_;
+            Stock StockFirst(StockOne, atrade_);
+
+            if (PullMarketData(daily_url_request_StockOne, read_buffer_StockOne)!=0) return -1;
+
+            if (PopulateDailyTrades(read_buffer, StockFirst) != 0)
+            {
+                cerr << "ERROR: failed to Populate Daily Trades for" << StockFirst.getSymbol() << std::endl;
+                CloseDatabase(db);
+                return -1;
+            }
+            
+            // Add the stock into the set
+            PairOneStocks.insert(StockOne);
+            if (InsertTable(db, true, StockFirst) != 0)
+            {
+                cerr << "ERROR: Failed to insert data into PairOnePrices" << endl;
+            }
+            
+           all_Stocks.insert(make_pair(StockOne, StockFirst));
+        }
+        
+        // Stock Two
+        if (PairOneStocks.find(StockTwo) == PairTwoStocks.end())
+        {
+            string url_request = daily_url_common + StockTwo + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
+            string read_buffer;
+            vector<TradeData> atrade_;
+            Stock StockSecond(StockTwo, atrade_);
+
+            if (PullMarketData(daily_url_request_StockTwo, read_buffer_StockTwo)!=0) return -1;
+
+            if (PopulateDailyTrades(read_buffer, StockSecond) != 0)
+            {
+                cerr << "ERROR: failed to Populate Daily Trades for" << StockSecond.getSymbol() << std::endl;
+                CloseDatabase(db);
+                return -1;
+            }
+            
+            // Add the stock into the set
+            PairTwoStocks.insert(StockTwo);
+            
+            if (InsertTable(db, false, StockSecond) != 0)
+            {
+                cerr << "ERROR: Failed to insert data into PairTwoPrices" << endl;
+            }
+            all_Stocks.insert(make_pair(StockTwo, StockSecond));
+        }
+
+    }
+    return 0;
+    
+}
+
 
 map<string, string> ProcessConfigData(string config_file)
 {

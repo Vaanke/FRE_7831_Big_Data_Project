@@ -4,6 +4,8 @@
 //
 //  Created by Evy Zheng on 4/29/22.
 //
+#ifndef STOCK_HPP
+#define STOCK_HPP
 
 #include <stdio.h>
 #include <iostream>
@@ -70,7 +72,7 @@ public:
     }
     
     void addTrade(const TradeData & trade) { trades.push_back(trade); }
-    string getSymbol() { return sSymbol; }
+    string getSymbol() const { return sSymbol; }
     const vector<TradeData> & getTrades() const { return trades; }
     friend ostream & operator << (ostream & ostr, const Stock & stock)
     {
@@ -123,3 +125,5 @@ public:
     double GetVolatility() const { return volatility; }
     double GetK() const { return k; }
 };
+
+#endif /* STOCK_HPP */

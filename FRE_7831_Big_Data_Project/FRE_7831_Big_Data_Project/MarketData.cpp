@@ -6,14 +6,15 @@
 //  Copyright © 2022 NYU. All rights reserved.
 //
 
-#include <stdio.h>
 #include "MarketData.h"
-#include <string>
-#include "json/json.h"
-#include "curl/curl.h"
 #include <fstream>
 #include <iostream>
-
+#include <sstream>
+#include <stdio.h>
+#include "Util.hpp"
+#include "json/json.h"
+#include "curl/curl.h"
+#include <sqlite3.h>
 
 int PullMarketData(const std::string& url_request, std::string& read_buffer)
 {
@@ -66,3 +67,44 @@ int PullMarketData(const std::string& url_request, std::string& read_buffer)
     
     return 0;
 }
+
+int PopulateDailyTrades(const std::string &read_buffer, Stock& stock)
+{
+    Json::CharReaderBuilder builder;
+    Json::CharReader *reader = builder.newCharReader();
+    Json::Value root;
+    std::string errors;
+    
+    bool parsingSuccessful = reader->parse(read_buffer.c_str(), read_buffer.c_str() + read_buffer.size(), &root, &errors);
+    if (!parsingSuccessful)
+    {
+        std::cout << "Failed to parse JSON " << std::endl << read_buffer << ": " << errors << std::endl;
+        return -1;
+    }
+    
+    std::cout << "\nSuccessfully parsing JSON\n" << std::endl;
+    
+    std::string date;
+    double open;
+    double high;
+    double low;
+    double close;
+    double adjclose;
+    long volume;
+    
+    for (Json::Value::const_iterator itr = root.begin(); itr != root.end(); itr++)
+    {
+        date = (*itr)["date"].asString();
+        open = (*itr)["open"].asFloat();
+        high = (*itr)["high"].asFloat();
+        low = (*itr)["low"].asFloat();
+        close = (*itr)["close"].asFloat();
+        adjclose = (*itr)["adjusted_close"].asFloat();
+        volume = (*itr)["volume"].asInt64();
+        
+        TradeData aTrade(date, open, high, low, close, adjclose, volume);
+        stock.addTrade(aTrade);
+    }
+    return 0;
+}
+

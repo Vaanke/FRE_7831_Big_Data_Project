@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  finalprj_Pair-Trading
-//
-//  Created by Deyang Van on 4/27/22.
-//
-#pragma once
 #include <iostream>
 //#include "Stock.hpp"
 #include "Database.hpp"
@@ -26,21 +19,21 @@ int main(int argc, const char * argv[]) {
     
     
     
-    PopulateStocks(all_Stocks, all_Pairs); // use info from vec of stock paris to get stock tickers, and fetch data from web thro tickers
+    //PopulateStocks(all_Stocks, all_Pairs); // use info from vec of stock paris to get stock tickers, and fetch data from web thro tickers
     PopulatePairPrices(all_Stocks, all_Pairs); // transfer daily data from all_stocks to stockPairPrices
-
+    
     
     //open database
-    string database_name = "pair_trading.db";
+    string database_name ="pair_trading.db";
     cout << "Opening Database..." << endl;
     sqlite3* db = NULL;
     if (OpenDatabase(database_name.c_str(), db) != 0)      return -1;
     
     
     bool bCompleted = false;
-    char option;
-       // Menu
-    while (!bCompleted) {
+    char selection;
+    // Menu
+    while (!bCompleted)    {
         std::cout << endl;
         std::cout << "Menu" << endl;
         std::cout << "========" << endl;
@@ -53,69 +46,73 @@ int main(int argc, const char * argv[]) {
         std::cout << "G - Manual Testing" << endl;
         std::cout << "H - Drop All the Tables" << endl << endl;
         std::cout << "X - Exit" << endl << endl;
-       
-        cin >> option;
-       switch (option) {
-           case 'A':{
-               // Create and Populate Pair Table, not populated with vol yet
-               PopulatePairs(all_Pairs, path_in); // read the PairTrading.txt and populate stockPair Prices
-               for (int i =0; i<(int)all_Pairs.size(); i++){
-                   cout<< all_Pairs[i].GetStockPair().first<< " "<<all_Pairs[i].GetStockPair().second<<endl;
-               }
-               if (Create_PairTable(all_Pairs, db) == -1){
-                   return -1;
-               }
-               cout << "Completed!" << endl;
-               break;
-           }
-               
-           case 'B':{
-               // Retrieve and Populate Historical Data for Each Stock
-               cout << "Completed!" << endl;
-               break;
-           }
-               
-           case 'C': {
-               // Create PairPrices Table
-               // Create all three pair prices table.
-               cout << "Completed!" << endl;
-               break;
-           }
-           case 'D': {
-               // Calculate Violatility
-               // populate stockpairs table with vol
-               cout << "Completed!" << endl;
-               break;
-           }
-           case 'E': {
-               // Back Test, 1/1/2022 - now
-               
-               cout << "Completed!" << endl;
-               break;
-           }
-           case 'F': {
-               // Calculate Profit and Loss for Each Pair
-               cout << "Completed!" << endl;
-               break;
-           }
-           case 'G': {
-               cout << "Completed!" << endl;
-               break;
-           }
-           case 'H': {
-               cout << "Completed!" << endl;
-               break;
-               }
-           case 'X': {
-               bCompleted = true;
-               break;
-               }
-       }
+        
+        std::cout <<"Enter selection: ";
+        std::cin >> selection;
+        
+        switch (selection) {
+            case 'A':
+            case 'a':
+            {
+                // Create and Populate Pair Table, not populated with vol yet
+                PopulatePairs(all_Pairs, path_in); // read the PairTrading.txt and populate stockPair Prices
+                for (int i =0; i<(int)all_Pairs.size(); i++){
+                    cout<< all_Pairs[i].GetStockPair().first<< " "<<all_Pairs[i].GetStockPair().second<<endl;
+                }
+                if (Create_PairTable(all_Pairs, db) == -1){
+                    return -1;
+                }
+                cout << "A Completed!" << endl;
+                break;
+            }
+            case 'B':
+            case 'b':
+            {
+                // Retrieve and Populate Historical Data for Each Stock
+                if (Create_PairOneTwoPricesTable(db) != 0){return -1;}
+                if (PopulateStocks(all_Stocks, all_Pairs, db)!=0) {return -1;}
+                cout << "B Completed!" << endl;
+                break;
+            }
+                
+            case 'C': {
+                // Create PairPrices Table
+                // Create all three pair prices table.
+                cout << "Completed!" << endl;
+                break;
+            }
+            case 'D': {
+                // Calculate Violatility
+                // populate stockpairs table with vol
+                cout << "Completed!" << endl;
+                break;
+            }
+            case 'E': {
+                // Back Test, 1/1/2022 - now
+                
+                cout << "Completed!" << endl;
+                break;
+            }
+            case 'F': {
+                // Calculate Profit and Loss for Each Pair
+                cout << "Completed!" << endl;
+                break;
+            }
+            case 'G': {
+                cout << "Completed!" << endl;
+                break;
+            }
+            case 'H': {
+                cout << "Completed!" << endl;
+                break;
+            }
+            case 'X': {
+                bCompleted = true;
+                break;
+            }
+        }
+        
+        return 0;
+    }
     
-    return 0;
 }
-    
-    
-    
-}
-
