@@ -17,7 +17,7 @@ void Calc_PnL(const map<string, Stock>& all_Stocks, vector<StockPairPrices>& all
 
 int Create_PairTable(const vector<StockPairPrices>& all_Pairs,sqlite3* db);
 int Create_PairOneTwoPricesTable(sqlite3 * &db);
-int PopulateStocks(map<string, Stock>& all_Stocks, const vector<StockPairPrices>& all_Pairs,sqlite3 * &db); // read the PairTrading.txt and populate stockPair Prices
+int PopulateStocks(const vector<StockPairPrices>& all_Pairs,sqlite3 * &db); // pull data using curl and populate stock12Prices
 
 // Process config file for Market Data Retrieval
 map<string, string> ProcessConfigData(string config_file);

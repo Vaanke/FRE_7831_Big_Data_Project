@@ -61,9 +61,9 @@ int PullMarketData(const std::string& url_request, std::string& read_buffer)
         return -1;
     }
     
-    //cout << read_buffer << endl;
+    cout << read_buffer << endl;
     curl_easy_cleanup(handle);
-    curl_global_cleanup();
+    //curl_global_cleanup();
     
     return 0;
 }
@@ -76,9 +76,10 @@ int PopulateDailyTrades(const std::string &read_buffer, Stock& stock)
     std::string errors;
     
     bool parsingSuccessful = reader->parse(read_buffer.c_str(), read_buffer.c_str() + read_buffer.size(), &root, &errors);
+    
     if (!parsingSuccessful)
     {
-        std::cout << "Failed to parse JSON " << std::endl << read_buffer << ": " << errors << std::endl;
+        std::cout << " Failed to parse JSON " << std::endl << read_buffer << ": " << errors << std::endl;
         return -1;
     }
     

@@ -110,7 +110,7 @@ int Create_PairOneTwoPricesTable(sqlite3 * &db)
     return 0;
 }
 
-int PopulateStocks(map<string, Stock>& all_Stocks, const vector<StockPairPrices>& all_Pairs,sqlite3 * &db)
+int PopulateStocks(const vector<StockPairPrices>& all_Pairs,sqlite3 * &db)
 {
     
     string start_date = "2012-01-01";
@@ -134,20 +134,20 @@ int PopulateStocks(map<string, Stock>& all_Stocks, const vector<StockPairPrices>
         string daily_url_request_StockOne = daily_url_common + StockOne + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
         string daily_url_request_StockTwo = daily_url_common + StockTwo + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
         
-        string read_buffer_StockOne;
-        string read_buffer_StockTwo;
-        
+//        string read_buffer_StockOne;
+//        string read_buffer_StockTwo;
+
         // Stock One
         if (PairOneStocks.find(StockOne) == PairOneStocks.end())
         {
             string url_request = daily_url_common + StockOne + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
-            string read_buffer;
+            string read_buffer_StockOne;
             vector<TradeData> atrade_;
             Stock StockFirst(StockOne, atrade_);
 
             if (PullMarketData(daily_url_request_StockOne, read_buffer_StockOne)!=0) return -1;
 
-            if (PopulateDailyTrades(read_buffer, StockFirst) != 0)
+            if (PopulateDailyTrades(read_buffer_StockOne, StockFirst) != 0)
             {
                 cerr << "ERROR: failed to Populate Daily Trades for" << StockFirst.getSymbol() << std::endl;
                 CloseDatabase(db);
@@ -161,20 +161,22 @@ int PopulateStocks(map<string, Stock>& all_Stocks, const vector<StockPairPrices>
                 cerr << "ERROR: Failed to insert data into PairOnePrices" << endl;
             }
             
-           all_Stocks.insert(make_pair(StockOne, StockFirst));
         }
         
         // Stock Two
-        if (PairOneStocks.find(StockTwo) == PairTwoStocks.end())
+        if (PairTwoStocks.find(StockTwo) == PairTwoStocks.end())
         {
             string url_request = daily_url_common + StockTwo + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
-            string read_buffer;
+
+            cout<<url_request;
+
+            string read_buffer_StockTwo;
             vector<TradeData> atrade_;
             Stock StockSecond(StockTwo, atrade_);
 
             if (PullMarketData(daily_url_request_StockTwo, read_buffer_StockTwo)!=0) return -1;
 
-            if (PopulateDailyTrades(read_buffer, StockSecond) != 0)
+            if (PopulateDailyTrades(read_buffer_StockTwo, StockSecond) != 0)
             {
                 cerr << "ERROR: failed to Populate Daily Trades for" << StockSecond.getSymbol() << std::endl;
                 CloseDatabase(db);
@@ -188,7 +190,6 @@ int PopulateStocks(map<string, Stock>& all_Stocks, const vector<StockPairPrices>
             {
                 cerr << "ERROR: Failed to insert data into PairTwoPrices" << endl;
             }
-            all_Stocks.insert(make_pair(StockTwo, StockSecond));
         }
 
     }

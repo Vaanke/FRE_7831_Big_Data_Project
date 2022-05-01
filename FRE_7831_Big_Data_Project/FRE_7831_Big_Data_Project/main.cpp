@@ -13,14 +13,14 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     
-    string path_in = "PairTrading.txt";
+    string path_in = "/Users/elaine_huang/Desktop/NYUmfe/2022_Spring/FRE_7831/Final_Project/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Build/Products/Debug/PairTrading.txt";
     vector<StockPairPrices> all_Pairs;
-    map<string, Stock> all_Stocks;
+    //map<string, Stock> all_Stocks;
     
     
     
     //PopulateStocks(all_Stocks, all_Pairs); // use info from vec of stock paris to get stock tickers, and fetch data from web thro tickers
-    PopulatePairPrices(all_Stocks, all_Pairs); // transfer daily data from all_stocks to stockPairPrices
+    //PopulatePairPrices(all_Stocks, all_Pairs); // transfer daily data from all_stocks to stockPairPrices
     
     
     //open database
@@ -71,7 +71,7 @@ int main(int argc, const char * argv[]) {
             {
                 // Retrieve and Populate Historical Data for Each Stock
                 if (Create_PairOneTwoPricesTable(db) != 0) {return -1;}
-                if (PopulateStocks(all_Stocks, all_Pairs, db)!=0) {return -1;}
+                if (PopulateStocks(all_Pairs, db)!=0) {return -1;}
                 cout << "B Completed!" << endl;
                 break;
             }
