@@ -13,7 +13,7 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     
-    string path_in = "/Users/elaine_huang/Desktop/NYUmfe/2022_Spring/FRE_7831/Final_Project/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Build/Products/Debug/PairTrading.txt";
+    string path_in = "PairTrading.txt";
     vector<StockPairPrices> all_Pairs;
     //map<string, Stock> all_Stocks;
     
@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
     
     
     //open database
-    string database_name = "/Users/elaine_huang/Desktop/NYUmfe/2022_Spring/FRE_7831/Final_Project/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Build/Products/Debug/pair_trading.db";
+    string database_name = "pair_trading.db";
     cout << "Opening Database..." << endl;
     sqlite3* db = NULL;
     if (OpenDatabase(database_name.c_str(), db) != 0)      return -1;
