@@ -24,16 +24,18 @@ int main(int argc, const char * argv[]) {
     
     
     //open database
-    string database_name ="pair_trading.db";
+    string database_name = "/Users/elaine_huang/Desktop/NYUmfe/2022_Spring/FRE_7831/Final_Project/FRE_7831_Big_Data_Project/FRE_7831_Big_Data_Project/DerivedData/FRE_7831_Big_Data_Project/Build/Products/Debug/pair_trading.db";
     cout << "Opening Database..." << endl;
     sqlite3* db = NULL;
     if (OpenDatabase(database_name.c_str(), db) != 0)      return -1;
     
     
-    bool bCompleted = false;
+    //bool bCompleted = false;
     char selection;
     // Menu
-    while (!bCompleted)    {
+    
+    do
+    {
         std::cout << endl;
         std::cout << "Menu" << endl;
         std::cout << "========" << endl;
@@ -49,7 +51,6 @@ int main(int argc, const char * argv[]) {
         
         std::cout <<"Enter selection: ";
         std::cin >> selection;
-        
         switch (selection) {
             case 'A':
             case 'a':
@@ -69,7 +70,7 @@ int main(int argc, const char * argv[]) {
             case 'b':
             {
                 // Retrieve and Populate Historical Data for Each Stock
-                if (Create_PairOneTwoPricesTable(db) != 0){return -1;}
+                if (Create_PairOneTwoPricesTable(db) != 0) {return -1;}
                 if (PopulateStocks(all_Stocks, all_Pairs, db)!=0) {return -1;}
                 cout << "B Completed!" << endl;
                 break;
@@ -107,12 +108,18 @@ int main(int argc, const char * argv[]) {
                 break;
             }
             case 'X': {
-                bCompleted = true;
+                break;
+            }
+            default:
+            {
+                cerr << "Invalid selection. Choose again." << endl;
                 break;
             }
         }
+        cout << endl;
         
-        return 0;
-    }
-    
+    } while (selection != 'X');
+    CloseDatabase(db);
+    return 0;
 }
+
