@@ -7,17 +7,8 @@
 //using namespace std;
 
 
-void PopulatePairs(vector<StockPairPrices>& all_Pairs, const string& file_name); // read the PairTrading.txt and populate stockPair Prices
 
-//void PopulateStocks(map<string, Stock>& all_Stocks, const vector<StockPairPrices>& all_Pairs); // use info from vec of stock paris to get stock tickers, and fetch data from web thro tickers
-void PopulatePairPrices(const map<string, Stock>& all_Stocks, vector<StockPairPrices>& all_Pairs); // transfer daily data from all_stocks to stockPairPrices
-void Calc_Vol(const map<string, Stock>& all_Stocks, vector<StockPairPrices>& all_Pairs); // update vol in StockPairPrices using the existing stock data. Vol = ratio of two adj_close price for each pair, from 1/1/2012 - 12/31/2021
 void Calc_PnL(const map<string, Stock>& all_Stocks, vector<StockPairPrices>& all_Pairs); // update PnL in StockPairPrices using the existing vol and stock data
-
-
-int Create_PairTable(const vector<StockPairPrices>& all_Pairs,sqlite3* db);
-int Create_PairOneTwoPricesTable(sqlite3 * &db);
-int PopulateStocks(const vector<StockPairPrices>& all_Pairs,sqlite3 * &db); // pull data using curl and populate stock12Prices
 
 // Process config file for Market Data Retrieval
 map<string, string> ProcessConfigData(string config_file);
@@ -25,4 +16,5 @@ map<string, string> ProcessConfigData(string config_file);
 //writing call back function for storing fetched values in memory
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
 
-void Create_PairTable(const vector<StockPairPrices>& all_Pairs);
+//calculate pnl for manual testing
+float Calc_pnl_manual(float sigma, int k, float open1d2, float close1d1, float close1d2, float open2d2, float close2d1, float close2d2);
