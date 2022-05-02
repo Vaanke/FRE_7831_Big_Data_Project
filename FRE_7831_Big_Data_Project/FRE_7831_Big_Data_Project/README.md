@@ -1,5 +1,8 @@
 # FRE_7831_Final_Project
 
+### May 1 Update
+- Finished menu part A,B,C,D,G by Zuoran, Elaine, Zirui
+
 ### Pairs Trading Project
 - Design, populate, and query a sqlite3 database for pairs trading.
 - Provide SQL queries for pair trading statistics.
