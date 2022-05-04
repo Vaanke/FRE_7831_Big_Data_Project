@@ -85,8 +85,15 @@ int ShowTable(sqlite3* db, const char* sql_stmt)
 
                 // Display Cell Value
                 std::cout.width(12);
+                std::setprecision(3);
                 std::cout.setf(std::ios::left);
-                std::cout << results[cellPosition] << " ";
+                string res = results[cellPosition] ;
+                if (isNumber(res)) {
+                    std::cout << stof(res) << " ";
+                } else {
+                    std::cout << res << " ";
+                }
+                
             }
 
             // End Line

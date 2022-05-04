@@ -15,6 +15,14 @@
 #include <unistd.h>
 using namespace std;
 
+//int main(){
+//    string ss = "-23.93";
+//    if (ss[0] == '-') cout << "yes" << endl;
+//    return 0;
+//}
+//
+
+
 int main() {
     
     string path_in = "PairTrading.txt";
@@ -112,6 +120,8 @@ int main() {
             {
                 // Calculate Profit and Loss for Each Pair
                 if (Calc_PnL_cumulative(db) != 0) return -1;
+                string sql_showtable  = "SELECT * FROM StockPairs ; ";
+                ShowTable( db, sql_showtable.c_str());
                 cout << endl << "F Completed!" << endl;
                 break;
             }
