@@ -1,7 +1,12 @@
 # Pair Trading 
 - freq = Intraday
 
-### May 3 Update
+
+### May 3 Update2 - Deyang
+- add showtable function
+- add isNum funciton for showing table.
+
+### May 3 Update - Deyang
 For Presentation:
 
 Please create a PPT slide presentation with about 10-15 slides to cover the following:
