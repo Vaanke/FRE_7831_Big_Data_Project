@@ -1,7 +1,15 @@
 # FRE_7831_Final_Project
 
+### Apr 29 Update
+- PopulatePairs, Create PairTable :  : Zhuoran Ma
+- PopulateStocks, create Pair1Stocks & Pair2Stocks Table: Elaine
+- Create & populate PairPrices Table, Calc_Vol: Zirui
+- Calc_PnL: Deyang
+- 
 ### May 1 Update
 - Finished menu part A,B,C,D,G by Zuoran, Elaine, Zirui
+
+### May 3 Update
 
 ### Pairs Trading Project
 - Design, populate, and query a sqlite3 database for pairs trading.
@@ -53,8 +61,4 @@ Store this standard deviation in the database.
         Trades: pair symbols, date and profit_loss of each day, primary keys: pair symbols and date
     (b) Establish E-R model to enforce the relationship of primary keys and foreign keys for each table.
 
-### Apr 29 Updates
-- PopulatePairs, Create PairTable :  : Zhuoran Ma
-- PopulateStocks, create Pair1Stocks & Pair2Stocks Table: Elaine
-- Create & populate PairPrices Table, Calc_Vol: Zirui
-- Calc_PnL: Deyang
+
