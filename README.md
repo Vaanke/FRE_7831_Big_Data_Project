@@ -2,6 +2,9 @@
 - freq = Intraday
 
 
+### May 3 Update3 - Deyang
+- beautify files and funcitons
+
 ### May 3 Update2 - Deyang
 - add showtable function
 - add isNum funciton for showing table.
