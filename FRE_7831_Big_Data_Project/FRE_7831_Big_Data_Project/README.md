@@ -1,15 +1,15 @@
 # FRE_7831_Final_Project
 
+### May 3 Update
+
+### May 1 Update
+- Finished menu part A,B,C,D,G by Zuoran, Elaine, Zirui
+
 ### Apr 29 Update
 - PopulatePairs, Create PairTable :  : Zhuoran Ma
 - PopulateStocks, create Pair1Stocks & Pair2Stocks Table: Elaine
 - Create & populate PairPrices Table, Calc_Vol: Zirui
 - Calc_PnL: Deyang
-- 
-### May 1 Update
-- Finished menu part A,B,C,D,G by Zuoran, Elaine, Zirui
-
-### May 3 Update
 
 ### Pairs Trading Project
 - Design, populate, and query a sqlite3 database for pairs trading.
