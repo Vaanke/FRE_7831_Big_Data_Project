@@ -5,7 +5,6 @@
 //  Created by Deyang Van on 5/1/22.
 //
 
-// blablabla pulled request May 3, for demo
 
 #include "MarketData.hpp"
 #include <fstream>

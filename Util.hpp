@@ -30,4 +30,5 @@ map<string, string> ProcessConfigData(string config_file);
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp);
 int Insert_intoPairPrices(sqlite3* & db);
 
-
+bool isNums(const string str);
+bool isNumber(string ss);

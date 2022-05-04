@@ -370,3 +370,28 @@ int Insert_intoPairPrices(sqlite3* & db){
     cout << "PairPrices table populated ." << endl;
     return 0;
 }
+
+
+
+bool isNums(const string str)
+{
+    for (char const &c : str) {
+        if (std::isdigit(c) == 0) return false;
+    }
+    return true;
+}
+
+bool isNumber(string ss){
+    
+    if (ss[0] == '-'){
+        ss.erase(0,1); // erase singn
+    }
+    if (ss.find_first_of(".") != string::npos) {
+        size_t posi = (int)ss.find_first_of(".");
+        ss.erase(posi, 1);
+        return isNums(ss);
+    }
+    else {
+        return isNums(ss);
+    }
+}

@@ -9,7 +9,7 @@
 #include <string>
 #include "sqlite3.h"
 #include "Stock.hpp"
-
+#include "Util.hpp"
 using namespace std;
 
 int OpenDatabase(const char* database_name, sqlite3* & db);
