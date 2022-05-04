@@ -9,7 +9,9 @@ Please create a PPT slide presentation with about 10-15 slides to cover the foll
 - **Zhuoran**
 
 > (1) Title page: Project name, course name and all the team member names
+> 
 > (2) A brief executive summary.
+> 
 > (3) A task allocation page indicates contribution from each team member.
 
 - **Deyang**
@@ -19,6 +21,7 @@ Please create a PPT slide presentation with about 10-15 slides to cover the foll
 - **All team memebrs, each one write their own detailed explaination for functinality**
 
 > (5) The SQL statements you create for your team projects, how you use them in your project.
+> 
 > (6) Explanations of the functionality and implementation of your class(es), containers and others. But do not just copy and paste your source codes onto slides.
 
 - **Zirui**
