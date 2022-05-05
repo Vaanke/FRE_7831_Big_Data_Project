@@ -8,7 +8,7 @@
 
 **For the writing to db, we need to change the OpenDB configuration as the following**
 
-```python 
+```c++ 
 int OpenDatabase(const char* database_name, sqlite3* & db)
 {
     int rc = 0;
