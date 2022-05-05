@@ -1,6 +1,9 @@
 # Pair Trading 
 - freq = Intraday
 
+### May 4 Update - Deyang
+- add multithreading techiniques for parallel computing
+
 
 ### May 3 Update3 - Deyang
 - beautify files and funcitons
