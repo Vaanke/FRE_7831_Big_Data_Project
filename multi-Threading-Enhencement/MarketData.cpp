@@ -176,7 +176,7 @@ int PopulatePairPrices_tables(sqlite3 * &db, const map<string,Stock> & stocks, b
         else {
             if (InsertTable(db, false, itr->second) != 0)
             {
-                cerr << "ERROR: Failed to insert" + itr->first + "data into PairOnePrices Table" << endl;
+                cerr << "ERROR: Failed to insert" + itr->first + "data into PairTwoPrices Table" << endl;
             } else {
                 cout << itr->first <<" : Successfully inserted" << endl;
             }
