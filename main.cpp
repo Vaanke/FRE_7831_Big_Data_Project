@@ -15,12 +15,6 @@
 #include <unistd.h>
 using namespace std;
 
-//int main(){
-//    string ss = "-23.93";
-//    if (ss[0] == '-') cout << "yes" << endl;
-//    return 0;
-//}
-//
 
 
 int main() {
