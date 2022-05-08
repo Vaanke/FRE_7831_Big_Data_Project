@@ -223,8 +223,7 @@ int PopulateStocks(const vector<StockPairPrices>& all_Pairs,sqlite3 * &db, strin
                 CloseDatabase(db);
                 return -1;
             }
-            // Add the stock into the set
-            // threading: segement stocks tickers into groups, multi access web for downloading data, then combine data and insert to table.
+
             PairOneStocks.insert(StockOne);
             if (InsertTable(db, true, StockFirst) != 0)
             {
