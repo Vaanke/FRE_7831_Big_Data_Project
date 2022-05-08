@@ -1,5 +1,6 @@
 # Pair Trading 
 - freq = Intraday
+- PPT 👇
 https://docs.google.com/presentation/d/1_Ji4500JqWLY2TU-w8mcDJqJMqjnOxf-4WcDaaE1KKc/edit#slide=id.g127b8bbc5de_1_26
 
 ### May 4 Update - Deyang
