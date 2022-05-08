@@ -15,14 +15,8 @@
 #include <unistd.h>
 #include <thread>
 
-using namespace std;
 
-//int main(){
-//    string ss = "-23.93";
-//    if (ss[0] == '-') cout << "yes" << endl;
-//    return 0;
-//}
-//
+using namespace std;
 
 
 int main() {
@@ -119,8 +113,6 @@ int main() {
                 tpop1.join();
                 tpop2.join();
 
-               
-
                 
                 
                 auto end = chrono::steady_clock::now();
@@ -134,9 +126,7 @@ int main() {
             case 'C':
             case 'c':
             {
-                // Create PairPrices Table
-                // Create all three pair prices table.
-                
+
                 if(Create_PairPricesTable(db)!=0) return -1;
                 if(Insert_intoPairPrices(db)!=0) return -1;
                 cout << endl << "C Completed!" << endl;
@@ -197,7 +187,7 @@ int main() {
                 cout << "Enter k: ";
                 cin >> k;
                 cout << "~~~~~~~~~~~~~~~~~" << endl;
-                cout << "Enter previous trade date for testing purpose in format of xxxx-xx-xx: " ;
+                cout << "Enter previous trade date for testing purpose in format of xxxx-xx-xx (should only be a TRADE DATE): " ;
                 cin >> test_date;
                 cout << "~~~~~~~~~~~~~~~~~" << endl;
                 cout << " " << endl;
@@ -310,3 +300,291 @@ int main() {
     
     return 0;
 }
+
+/*
+ Opening Database...
+ Opened pair_trading.db
+
+ Menu
+ ========
+ A - Create and Populate Pair Table
+ B - Retrieve and Populate Historical Data for Each Stock
+ C - Create PairPrices Table
+ D - Calculate Violatility
+ E - Back Test
+ F - Calculate Profit and Loss for Each Pair
+ G - Manual Testing
+ H - Drop All the Tables
+
+ X - Exit
+
+ Enter selection: a
+ AAPL HPQ
+ BAC JPM
+ BHP FCX
+ CAT DE
+ CHK DVN
+ COP CVX
+ CS DB
+ CSX NSC
+ CVX XOM
+ DAL UAL
+ DSX GNK
+ EGLE GNK
+ HD LOW
+ IEF TLT
+ INTC SMH
+ KGC NEM
+ T VZ
+ UGA USO
+ Created 1 table
+
+ A Completed!
+
+
+ Menu
+ ========
+ A - Create and Populate Pair Table
+ B - Retrieve and Populate Historical Data for Each Stock
+ C - Create PairPrices Table
+ D - Calculate Violatility
+ E - Back Test
+ F - Calculate Profit and Loss for Each Pair
+ G - Manual Testing
+ H - Drop All the Tables
+
+ X - Exit
+
+ Enter selection: b
+ Finished Creating PairOnePrices & PairTwoPrices
+  
+ GNK: Successfully parsing JSON
+ CVX: Successfully parsing JSON
+ DSX: Successfully parsing JSON
+ AAPL: Successfully parsing JSON
+ LOW: Successfully parsing JSON
+ DB: Successfully parsing JSON
+ BAC: Successfully parsing JSON
+ EGLE: Successfully parsing JSON
+ NEM: Successfully parsing JSON
+ DE: Successfully parsing JSON
+ HD: Successfully parsing JSON
+ BHP: Successfully parsing JSON
+ SMH: Successfully parsing JSON
+ DVN: Successfully parsing JSON
+ IEF: Successfully parsing JSON
+ CAT: Successfully parsing JSON
+ TLT: Successfully parsing JSON
+ FCX: Successfully parsing JSON
+ INTC: Successfully parsing JSON
+ CHK: Successfully parsing JSON
+ HPQ: Successfully parsing JSON
+ USO: Successfully parsing JSON
+ KGC: Successfully parsing JSON
+ COP: Successfully parsing JSON
+ JPM: Successfully parsing JSON
+ VZ: Successfully parsing JSON
+ T: Successfully parsing JSON
+ CS: Successfully parsing JSON
+ NSC: Successfully parsing JSON
+ UGA: Successfully parsing JSON
+ CSX: Successfully parsing JSON
+ UAL: Successfully parsing JSON
+ CVX: Successfully parsing JSON
+ XOM: Successfully parsing JSON
+ DAL: Successfully parsing JSON
+ CVX : Successfully inserted
+ AAPL : Successfully inserted
+ DB : Successfully inserted
+ BAC : Successfully inserted
+ DE : Successfully inserted
+ BHP : Successfully inserted
+ DVN : Successfully inserted
+ CAT : Successfully inserted
+ CHK : Successfully inserted
+ FCX : Successfully inserted
+ GNK : Successfully inserted
+ COP : Successfully inserted
+ HPQ : Successfully inserted
+ CS : Successfully inserted
+ CSX : Successfully inserted
+ JPM : Successfully inserted
+ LOW : Successfully inserted
+ CVX : Successfully inserted
+ NEM : Successfully inserted
+ DAL : Successfully inserted
+ DSX : Successfully inserted
+ NSC : Successfully inserted
+ EGLE : Successfully inserted
+ SMH : Successfully inserted
+ HD : Successfully inserted
+ TLT : Successfully inserted
+ UAL : Successfully inserted
+ IEF : Successfully inserted
+ USO : Successfully inserted
+ INTC : Successfully inserted
+ KGC : Successfully inserted
+ VZ : Successfully inserted
+ XOM : Successfully inserted
+ T : Successfully inserted
+ UGA : Successfully inserted
+ Elapsed time in seconds: 43 sec
+
+ B Completed!
+
+
+ Menu
+ ========
+ A - Create and Populate Pair Table
+ B - Retrieve and Populate Historical Data for Each Stock
+ C - Create PairPrices Table
+ D - Calculate Violatility
+ E - Back Test
+ F - Calculate Profit and Loss for Each Pair
+ G - Manual Testing
+ H - Drop All the Tables
+
+ X - Exit
+
+ Enter selection: c
+ Creating PairPrices table ...
+ PairPrices table created.
+ Populating PairPrices table ...
+ PairPrices table populated .
+
+ C Completed!
+
+
+ Menu
+ ========
+ A - Create and Populate Pair Table
+ B - Retrieve and Populate Historical Data for Each Stock
+ C - Create PairPrices Table
+ D - Calculate Violatility
+ E - Back Test
+ F - Calculate Profit and Loss for Each Pair
+ G - Manual Testing
+ H - Drop All the Tables
+
+ X - Exit
+
+ Enter selection: d
+ Populating Volatility in StockPrices table ...
+
+ D Completed!
+
+
+ Menu
+ ========
+ A - Create and Populate Pair Table
+ B - Retrieve and Populate Historical Data for Each Stock
+ C - Create PairPrices Table
+ D - Calculate Violatility
+ E - Back Test
+ F - Calculate Profit and Loss for Each Pair
+ G - Manual Testing
+ H - Drop All the Tables
+
+ X - Exit
+
+ Enter selection: e
+ Please enter a volatility mutiplier: 1
+
+ E Completed!
+
+
+ Menu
+ ========
+ A - Create and Populate Pair Table
+ B - Retrieve and Populate Historical Data for Each Stock
+ C - Create PairPrices Table
+ D - Calculate Violatility
+ E - Back Test
+ F - Calculate Profit and Loss for Each Pair
+ G - Manual Testing
+ H - Drop All the Tables
+
+ X - Exit
+
+ Enter selection: f
+ id           symbol1      symbol2      volatility   profit_loss
+ ~~~~~~~~~~~~ ~~~~~~~~~~~~ ~~~~~~~~~~~~ ~~~~~~~~~~~~ ~~~~~~~~~~~~
+ 1            AAPL         HPQ          1.58545      -183695
+ 2            BAC          JPM          0.000479807  53368.7
+ 3            BHP          FCX          0.875849     121783
+ 4            CAT          DE           0.0225316    108791
+ 5            CHK          DVN          0.0580281    -27723.3
+ 6            COP          CVX          0.0069038    135475
+ 7            CS           DB           0.0912074    -1465.77
+ 8            CSX          NSC          0.000188582  -17862
+ 9            CVX          XOM          0.0825573    232101
+ 10           DAL          UAL          0.0195749    -26791.7
+ 11           DSX          GNK          0.0125231    -9377.16
+ 12           EGLE         GNK          200.884      1638.78
+ 13           HD           LOW          0.0294213    -26059.8
+ 14           IEF          TLT          0.00487944   19672.5
+ 15           INTC         SMH          0.0159747    103929
+ 16           KGC          NEM          0.00188555   -8087.68
+ 17           T            VZ           0.00433099   26443.2
+ 18           UGA          USO          0.0320085    -20615.2
+
+ F Completed!
+
+
+ Menu
+ ========
+ A - Create and Populate Pair Table
+ B - Retrieve and Populate Historical Data for Each Stock
+ C - Create PairPrices Table
+ D - Calculate Violatility
+ E - Back Test
+ F - Calculate Profit and Loss for Each Pair
+ G - Manual Testing
+ H - Drop All the Tables
+
+ X - Exit
+
+ Enter selection: g
+
+ ~~~~~~~~~~~~~~~~~
+ Enter Symbol1: AAPL
+ Enter Open Price for AAPL: 156.3
+ Enter Close Price for AAPL: 162.3
+ ~~~~~~~~~~~~~~~~~
+ Enter Symbol2: HPQ
+ Enter Open Price for HPQ: 36.5
+ Enter Close Price for HPQ: 35.6
+ ~~~~~~~~~~~~~~~~~
+ Enter k: 1
+ ~~~~~~~~~~~~~~~~~
+ Enter previous trade date for testing purpose in format of xxxx-xx-xx (should only be a TRADE DATE): 2022-04-29
+ ~~~~~~~~~~~~~~~~~
+  
+  
+ TESTING SUMMARY
+ ~~~~~~~~~~~~~~~~~
+ - Vol for ( AAPL , HPQ ) is: 1.58545
+ - Action: Long
+ - PnL for pair AAPL and HPQ is: 98539
+
+
+ G Completed!
+
+
+ Menu
+ ========
+ A - Create and Populate Pair Table
+ B - Retrieve and Populate Historical Data for Each Stock
+ C - Create PairPrices Table
+ D - Calculate Violatility
+ E - Back Test
+ F - Calculate Profit and Loss for Each Pair
+ G - Manual Testing
+ H - Drop All the Tables
+
+ X - Exit
+
+ Enter selection: x
+
+ Program ended with exit code: 0
+ */

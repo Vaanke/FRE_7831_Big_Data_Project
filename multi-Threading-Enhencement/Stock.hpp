@@ -1,9 +1,7 @@
 //
 //  Stock.hpp
-//  FRE7831_MarketData_Lab
-//
-//  Created by 马卓然 on 2022/4/13.
-//
+
+
 #pragma once
 
 #include <stdio.h>

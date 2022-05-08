@@ -5,13 +5,13 @@
 //  Created by Deyang Van on 4/27/22.
 //
 #pragma once
-//#include "Stock.hpp"
+
 #include <vector>
 #include "json/json.h"
 #include "MarketData.hpp"
 #include "Database.hpp"
 #include "sqlite3.h"
-//using namespace std;
+
 
 
 

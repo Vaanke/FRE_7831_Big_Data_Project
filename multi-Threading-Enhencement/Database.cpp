@@ -10,16 +10,6 @@
 #include <string>
 #include "json/json.h"
 
-/*
-    The sqlite3_open_v2() interface works like sqlite3_open() except that it accepts two additional parameters for additional control over the new database connection. The flags parameter to sqlite3_open_v2() must include, at a minimum, one of the following three flag combinations:
-
-    SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE
-    The database is opened for reading and writing, and is created if it does not already exist. This is the behavior that is always used for sqlite3_open() and sqlite3_open16().
-    In addition to the required flags, the following optional flags are also supported:
-
-    SQLITE_OPEN_FULLMUTEX
-    The new database connection will use the "serialized" threading mode. This means the multiple threads can safely attempt to use the same database connection at the same time. (Mutexes will block any actual concurrency, but in this mode there is no harm in trying.)
-*/
 
 int OpenDatabase(const char* database_name, sqlite3* & db)
 {

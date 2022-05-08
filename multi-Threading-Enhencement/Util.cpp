@@ -12,11 +12,6 @@
 #include <cstdio>
 
 
-// read the PairTrading.txt and populate stockPair Prices
-
-
-
-
 
 
 int Calculate_Vol(sqlite3* & db, string back_test_start_date){
